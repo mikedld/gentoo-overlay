@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>mikedld@mikedld.com</email>
+    <name>Mike Gelfand</name>
+  </maintainer>
+  <use>
+    <flag name="system-state">Install files needed for system state backup</flag>
+  </use>
+</pkgmetadata>

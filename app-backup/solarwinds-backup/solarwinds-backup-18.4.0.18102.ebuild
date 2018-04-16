@@ -1,11 +1,11 @@
-# Copyright 2017 Mike Gelfand
+# Copyright 2017-2018 Mike Gelfand
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
 inherit eutils toolchain-funcs unpacker versionator
 
-MY_REV="073da49d5d-7012"
+MY_REV="714a90c586-8186"
 MY_PN="mxb"
 MY_PV="${PV}-${MY_REV}"
 MY_P="${MY_PN}-${MY_PV}"
@@ -93,12 +93,7 @@ src_install() {
 		doins libvixDiskLib.so.5 libvixMntapi.so.1
 	fi
 
-	local envd="${T}/99${PN}"
-	cat > "${envd}" <<-EOF
-		PATH='${MY_INSTALL_DIR}/bin'
-		ROOTPATH='${MY_INSTALL_DIR}/bin'
-	EOF
-	doenvd "${envd}"
+	dosym "${MY_INSTALL_DIR}"/bin/ClientTool /usr/bin/ClientTool
 
 	newinitd "${FILESDIR}/${PN}.rc" "${PN}"
 }
@@ -108,7 +103,5 @@ pkg_postinst() {
 	elog "  ${MY_INSTALL_DIR}/sbin/configure-fp.sh"
 	elog ""
 	elog "For additional configuration refer to:"
-	elog "  ${MY_INSTALL_DIR}/bin/ClientTool help"
-	elog ""
-	elog "${MY_INSTALL_DIR}/bin directory was added to your PATH"
+	elog "  ClientTool help"
 }

@@ -1,16 +1,16 @@
-# Copyright 2017-2018 Mike Gelfand
+# Copyright 2020 Mike Gelfand
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit eutils toolchain-funcs unpacker versionator
+inherit eutils toolchain-funcs unpacker
 
-MY_REV="714a90c586-8186"
+MY_REV="2f5deeaa01-3247"
 MY_PN="mxb"
 MY_PV="${PV}-${MY_REV}"
 MY_P="${MY_PN}-${MY_PV}"
 
-MY_PV_DIR="$(get_version_component_range 1-3)/$(get_version_component_range 4)-${MY_REV}"
+MY_PV_DIR="$(ver_cut 1-3)/$(ver_cut 4)-${MY_REV}"
 MY_SRC_URI_BASE="https://www.iaso.com/download/release/${MY_PV_DIR}/${MY_PN}-${PV}"
 
 DESCRIPTION="Backup and recovery software focused on helping keep businesses running"
@@ -64,10 +64,10 @@ src_install() {
 	dosbin "${T}"/configure-fp.sh
 
 	if use mysql; then
-		dobin bin/xtrabackup{,_51,_55}
+		dobin bin/xtrabackup_{2.0,2.0_51,2.0_55,2.4,8.0}
 
 		exeinto "${MY_INSTALL_DIR}"/bin/tools
-		doexe bin/tools/mysql
+		doexe bin/tools/mysql-{5.6,8.0}
 	fi
 
 	insinto "${MY_INSTALL_DIR}"/etc

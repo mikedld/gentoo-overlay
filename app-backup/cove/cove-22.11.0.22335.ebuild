@@ -73,16 +73,16 @@ src_install() {
 	if use mysql; then
 		dobin bin/xtrabackup_{2.0,2.0_51,2.0_55,2.4,8.0.22}
 
-		exeinto "${MY_INSTALL_DIR}"/bin/tools
-		doexe bin/tools/mysql-{5.6,8.0}
-
 		if use amd64; then
-			dobin bin/xtrabackup_{8.0.28}
+			dobin bin/xtrabackup_8.0.28
 			# Packaged binary not stripped :-\
 			$(tc-getBUILD_STRIP) "${MY_INSTALL_DIR}"/bin/xtrabackup_8.0.28
 
 			dosym /usr/$(get_libdir)/libprotobuf-lite.so "${MY_INSTALL_DIR}"/bin/libprotobuf-lite.so.3.11.4
 		fi
+
+		exeinto "${MY_INSTALL_DIR}"/bin/tools
+		doexe bin/tools/mysql-{5.6,8.0}
 	fi
 
 	insinto "${MY_INSTALL_DIR}"/etc

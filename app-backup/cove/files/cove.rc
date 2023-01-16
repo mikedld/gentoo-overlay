@@ -1,8 +1,8 @@
 #!/sbin/openrc-run
-# Copyright 2017 Mike Gelfand
+# Copyright 2023 Mike Gelfand
 # Distributed under the terms of the GNU General Public License v2
 
-command="/opt/solarwinds-backup/bin/ProcessController"
+command="/opt/cove/bin/ProcessController"
 command_args_background="serve"
 command_args_foreground="serve --foreground"
 pidfile="/var/run/ProcessController.pid"
